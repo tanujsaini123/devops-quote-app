@@ -1,6 +1,10 @@
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quote-app
     ports:
       - "5000:5000"
+    restart: always

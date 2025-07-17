@@ -1,111 +1,100 @@
-# 💬 DevOps Quote App
 
-This is a simple web application that shows **motivational quotes** on the browser. It is built using **Python Flask**, and deployed using **Docker**, **Kubernetes**, and **Jenkins** with a full CI/CD pipeline.
+# 🚀 DevOps Quote App
 
----
-
-## 🚀 Features
-
-- Shows motivational quotes in random colors
-- Web-based UI built with HTML + Bootstrap
-- Dockerized Flask backend
-- Kubernetes deployment with NodePort service
-- Jenkins pipeline for CI/CD automation
+This project is a **Motivational Quote Web App** built with **Flask**, Dockerized, and deployed on **Kubernetes** with a full **CI/CD pipeline** using Jenkins.
 
 ---
 
-## 🧰 Tech Stack
-
-- **Frontend**: HTML + Bootstrap
-- **Backend**: Python (Flask)
-- **Containerization**: Docker
-- **Orchestration**: Kubernetes
-- **CI/CD**: Jenkins
-- **Code Repo**: GitHub
-- **Image Repo**: DockerHub
-
----
-
-## 📁 Project Structure
+## 🌐 Project Structure
 
 ```
 devops-quote-app/
-│
 ├── backend/
-│   └── app.py               # Flask application
-│
-├── Dockerfile               # Docker build file
-├── docker-compose.yml       # Local Docker setup
-├── Jenkinsfile              # Jenkins pipeline
-└── k8s/
-    ├── deployment.yml       # K8s deployment
-    └── service.yml          # K8s service
+│   └── app.py               # Flask App
+├── Dockerfile               # Container build
+├── docker-compose.yml       # For local testing
+├── Jenkinsfile              # CI/CD pipeline
+├── k8s/
+│   ├── deployment.yml       # K8s Deployment
+│   └── service.yml          # K8s Service (NodePort)
 ```
 
 ---
 
-## ▶️ How to Run Locally
+## 💡 Features
 
-### Step 1: Clone the Repo
+- Displays multiple motivational quotes in the browser
+- Random background color for each quote
+- Dockerized Flask application
+- CI/CD pipeline with Jenkins:
+  - Git clone
+  - Docker build & push to DockerHub
+  - Kubernetes deployment
+  - Rollout restart for updates
 
-```bash
-git clone https://github.com/tanujsaini123/devops-quote-app.git
-cd devops-quote-app
-```
+---
 
-### Step 2: Run Using Docker Compose
+## 🧪 Local Testing with Docker Compose
 
 ```bash
 docker-compose up --build
 ```
 
-Then open: [http://localhost:5000](http://localhost:5000)
+Then open [http://localhost:5000](http://localhost:5000) in your browser.
 
 ---
 
-## ☸️ Deploy on Kubernetes
+## 🛠️ Jenkins CI/CD Pipeline
 
-### Step 1: Build & Push Docker Image
+Make sure your Jenkins instance has:
 
-```bash
-docker build -t tanujkumar123/quote-app:latest .
-docker push tanujkumar123/quote-app:latest
-```
+- Docker installed & running
+- Kubernetes CLI (`kubectl`) configured
+- DockerHub credentials stored with ID: `dockerHubcreds`
 
-### Step 2: Apply K8s Configs
+### ✅ Pipeline Stages
+
+1. Clone repo
+2. Build Docker image
+3. Push image to DockerHub
+4. Deploy to Kubernetes
+5. Rollout restart deployment
+
+---
+
+## ☸️ Kubernetes Deployment
+
+To deploy manually:
 
 ```bash
 kubectl apply -f k8s/
 kubectl rollout restart deployment quote-app
+kubectl get pods
 ```
 
-### Step 3: Access the App
+⛳ To access the app via NodePort:
 
 ```bash
-http://<your-node-ip>:30007
+kubectl port-forward service/quote-service 5000:5000
 ```
 
----
-
-## 🔄 Jenkins CI/CD Pipeline
-
-The `Jenkinsfile` automates the following steps:
-
-1. Clone source code from GitHub  
-2. Build Docker image  
-3. Push image to DockerHub  
-4. Deploy to Kubernetes  
-5. Restart deployment for update
+Then open [http://localhost:5000](http://localhost:5000)
 
 ---
 
-## 👨‍💻 Author
+## 📦 DockerHub
 
-**Tanuj Saini**  
-🔗 [GitHub Profile](https://github.com/tanujsaini123)
+Image is pushed to: `tanujkumar123/quote-app:latest`
 
 ---
 
-## 📜 License
+## ✨ Author
 
-This project is for learning purpose and free to use.
+- Tanuj Saini
+- GitHub: [@tanujsaini123](https://github.com/tanujsaini123)
+
+---
+
+## 📎 License
+
+This project is open-source and available under the [MIT License](LICENSE).

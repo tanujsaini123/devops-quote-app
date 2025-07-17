@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, jsonify
+from flask import Flask, render_template_string
 import random
 
 app = Flask(__name__)
@@ -19,11 +19,11 @@ def home():
         for q in quotes
     ]
 
-    html_template = '''
+    html = """
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Colorful Motivational Quotes</title>
+        <title>🌈 Motivational Quotes</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <style>
             body {
@@ -51,7 +51,7 @@ def home():
     </head>
     <body>
         <div class="container">
-            <h1 class="mb-4 text-center text-primary">🌈 Motivational Quotes</h1>
+            <h1 class="mb-4 text-center text-primary">🌟 Motivational Quotes</h1>
 
             {% for q in quotes %}
             <div class="quote-card" style="background-color: {{ q.color }}">
@@ -66,9 +66,9 @@ def home():
         </div>
     </body>
     </html>
-    '''
+    """
 
-    return render_template_string(html_template, quotes=colored_quotes)
+    return render_template_string(html, quotes=colored_quotes)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

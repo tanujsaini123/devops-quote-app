@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, jsonify
 import random
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def home():
         for q in quotes
     ]
 
-    html = """
+    html_template = '''
     <!DOCTYPE html>
     <html>
     <head>
@@ -66,9 +66,9 @@ def home():
         </div>
     </body>
     </html>
-    """
+    '''
 
-    return render_template_string(html, quotes=colored_quotes)
+    return render_template_string(html_template, quotes=colored_quotes)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

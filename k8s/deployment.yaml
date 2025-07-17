@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: quote-app
-        image: tanujsaini123/quote-app:latest
+        image: tanujkumar123/quote-app:latest
         ports:
         - containerPort: 5000

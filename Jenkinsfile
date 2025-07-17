@@ -37,6 +37,7 @@ pipeline {
             steps {
                 echo "🚀 Deploying with K8s..."
                 sh "kubectl apply -f k8s/"
+                sh "kubectl rollout restart deployment quote-app"
             }
         }
     }

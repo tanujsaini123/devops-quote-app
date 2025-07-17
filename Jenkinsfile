@@ -5,14 +5,14 @@ pipeline {
         stage("Code Clone") {
             steps {
                 echo "🔁 Cloning Repository..."
-                git url: "https://github.com/tanujsaini123/node-mongo-jenkins-k8s.git", branch: "main"
+                git url: "https://github.com/tanujsaini123/devops-quote-app.git", branch: "main"
             }
         }
 
         stage("Build Docker Image") {
             steps {
                 echo "🐳 Building Docker image..."
-                sh 'docker build -t node-mongo-app .'
+                sh 'docker build -t quote-app .'
             }
         }
 
@@ -26,8 +26,8 @@ pipeline {
                 )]) {
                     sh '''
                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker tag node-mongo-app:latest $DOCKER_USER/node-mongo-app:latest
-                        docker push $DOCKER_USER/node-mongo-app:latest
+                        docker tag quote-app:latest $DOCKER_USER/quote-app:latest
+                        docker push $DOCKER_USER/quote-app:latest
                     '''
                 }
             }
